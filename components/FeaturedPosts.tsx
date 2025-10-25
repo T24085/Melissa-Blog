@@ -131,7 +131,7 @@ export default function FeaturedPosts() {
                 </div>
                 
                 <Link
-                  href={`/posts/${post.id}`}
+                  href={`/post?id=${encodeURIComponent(post.id)}`}
                   className="flex items-center space-x-1 text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                 >
                   <span>Read More</span>

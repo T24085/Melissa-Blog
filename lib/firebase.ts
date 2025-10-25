@@ -1,7 +1,7 @@
+'use client'
+
 import { initializeApp, getApps, getApp, type FirebaseOptions } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
 import { getFirestore, collection, query, orderBy, limit, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, where } from 'firebase/firestore'
-import { getStorage } from 'firebase/storage'
 
 function getFirebaseConfig(): FirebaseOptions {
   const config = {
@@ -31,9 +31,7 @@ function getFirebaseConfig(): FirebaseOptions {
 const app = getApps().length > 0 ? getApp() : initializeApp(getFirebaseConfig())
 
 // Initialize Firebase services
-export const auth = getAuth(app)
 export const db = getFirestore(app)
-export const storage = getStorage(app)
 
 // Types
 export interface Post {

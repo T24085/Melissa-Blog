@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Menu, X, Heart, User } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 
+const ADMIN_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ADMIN === 'true'
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { user, signOut } = useAuth()
@@ -43,32 +45,34 @@ export default function Header() {
           </nav>
 
           {/* Auth Section */}
-          <div className="hidden md:flex items-center space-x-4">
-            {user ? (
-              <div className="flex items-center space-x-4">
+          {ADMIN_ENABLED && (
+            <div className="hidden md:flex items-center space-x-4">
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <Link
+                    href="/admin"
+                    className="flex items-center space-x-2 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  >
+                    <User className="h-4 w-4" />
+                    <span>Admin</span>
+                  </Link>
+                  <button
+                    onClick={signOut}
+                    className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
                 <Link
-                  href="/admin"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  href="/admin/login"
+                  className="btn-primary"
                 >
-                  <User className="h-4 w-4" />
-                  <span>Admin</span>
+                  Admin Login
                 </Link>
-                <button
-                  onClick={signOut}
-                  className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
-                >
-                  Sign Out
-                </button>
-              </div>
-            ) : (
-              <Link
-                href="/admin/login"
-                className="btn-primary"
-              >
-                Admin Login
-              </Link>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Mobile menu button */}
           <button
@@ -93,36 +97,38 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              <div className="border-t border-gray-200 pt-2 mt-2">
-                {user ? (
-                  <div className="space-y-1">
+              {ADMIN_ENABLED && (
+                <div className="border-t border-gray-200 pt-2 mt-2">
+                  {user ? (
+                    <div className="space-y-1">
+                      <Link
+                        href="/admin"
+                        className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Admin Dashboard
+                      </Link>
+                      <button
+                        onClick={() => {
+                          signOut()
+                          setIsMenuOpen(false)
+                        }}
+                        className="block w-full text-left px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
                     <Link
-                      href="/admin"
-                      className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                      href="/admin/login"
+                      className="block px-3 py-2 text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-md transition-colors duration-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Admin Dashboard
+                      Admin Login
                     </Link>
-                    <button
-                      onClick={() => {
-                        signOut()
-                        setIsMenuOpen(false)
-                      }}
-                      className="block w-full text-left px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    href="/admin/login"
-                    className="block px-3 py-2 text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-md transition-colors duration-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Admin Login
-                  </Link>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

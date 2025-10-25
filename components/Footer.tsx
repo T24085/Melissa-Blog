@@ -69,27 +69,27 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/category/faith" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
-                  Faith & Spirituality
+                <Link href="/category?slug=faith" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
+                  Faith &amp; Spirituality
                 </Link>
               </li>
               <li>
-                <Link href="/category/life" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
+                <Link href="/category?slug=life" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
                   Life Lessons
                 </Link>
               </li>
               <li>
-                <Link href="/category/reflection" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
+                <Link href="/category?slug=reflection" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
                   Personal Reflection
                 </Link>
               </li>
               <li>
-                <Link href="/category/books" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
+                <Link href="/category?slug=books" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
                   Book Reviews
                 </Link>
               </li>
               <li>
-                <Link href="/category/random" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
+                <Link href="/category?slug=random" className="text-gray-300 hover:text-primary-400 transition-colors duration-200">
                   Random Thoughts
                 </Link>
               </li>

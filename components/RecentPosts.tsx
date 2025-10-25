@@ -135,7 +135,7 @@ export default function RecentPosts() {
                   
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     <Link
-                      href={`/posts/${post.id}`}
+                      href={`/post?id=${encodeURIComponent(post.id)}`}
                       className="hover:text-primary-600 transition-colors duration-200"
                     >
                       {post.title}
@@ -147,7 +147,7 @@ export default function RecentPosts() {
                   </p>
                   
                   <Link
-                    href={`/posts/${post.id}`}
+                    href={`/post?id=${encodeURIComponent(post.id)}`}
                     className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center space-x-1"
                   >
                     <span>Read More</span>

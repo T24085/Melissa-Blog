@@ -1,8 +1,10 @@
 'use client'
 
+'use client'
+
 import { useEffect, useMemo, useState } from 'react'
-import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react'
 import { getPostsByCategory, type Post } from '@/lib/firebase'
 
@@ -47,8 +49,8 @@ const toDate = (value: Post['publishedAt']) => {
 }
 
 export default function CategoryPage() {
-  const params = useParams<{ slug: string }>()
-  const slug = params?.slug
+  const searchParams = useSearchParams()
+  const slug = searchParams.get('slug') || undefined
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -65,6 +67,8 @@ export default function CategoryPage() {
 
   useEffect(() => {
     if (!slug) {
+      setPosts([])
+      setLoading(false)
       return
     }
 
@@ -83,7 +87,23 @@ export default function CategoryPage() {
   }, [slug])
 
   if (!slug) {
-    return null
+    return (
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <h1 className="text-3xl font-semibold text-gray-900">Select a category</h1>
+          <p className="text-gray-600">
+            Try visiting this page with a <code>?slug=</code> query parameter, for example{' '}
+            <Link className="text-primary-600 hover:text-primary-700" href="/category?slug=faith">
+              /category?slug=faith
+            </Link>.
+          </p>
+          <Link href="/posts" className="btn-primary inline-flex items-center space-x-2">
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to all posts</span>
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   if (loading) {
@@ -155,7 +175,7 @@ export default function CategoryPage() {
                     </div>
 
                     <h2 className="text-2xl font-semibold text-gray-900 leading-snug">
-                      <Link href={`/posts/${post.id}`} className="hover:text-primary-600 transition-colors duration-200">
+                      <Link href={`/post?id=${encodeURIComponent(post.id)}`} className="hover:text-primary-600 transition-colors duration-200">
                         {post.title}
                       </Link>
                     </h2>

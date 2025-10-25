@@ -1,44 +1,25 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { User, onAuthStateChanged, signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+const DISABLED_MESSAGE = 'Firebase auth is disabled for static exports. Deploy to a dynamic host to enable admin features.'
+
+type DisabledUser = {
+  email?: string
+}
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user)
-      setLoading(false)
-    })
-
-    return () => unsubscribe()
-  }, [])
-
-  const signIn = async (email: string, password: string) => {
-    try {
-      const result = await signInWithEmailAndPassword(auth, email, password)
-      return result.user
-    } catch (error) {
-      throw error
-    }
+  const signIn = async (_email: string, _password: string) => {
+    throw new Error(DISABLED_MESSAGE)
   }
 
   const signOut = async () => {
-    try {
-      await firebaseSignOut(auth)
-    } catch (error) {
-      throw error
-    }
+    throw new Error(DISABLED_MESSAGE)
   }
 
   return {
-    user,
-    loading,
+    user: null as DisabledUser | null,
+    loading: false,
     signIn,
-    signOut
+    signOut,
   }
 }
 

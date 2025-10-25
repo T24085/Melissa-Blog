@@ -56,7 +56,7 @@ export default function Categories() {
           return (
             <Link
               key={category.slug}
-              href={`/category/${category.slug}`}
+              href={`/category?slug=${encodeURIComponent(category.slug)}`}
               className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
             >
               <div className={`p-2 rounded-lg ${category.bgColor} group-hover:scale-110 transition-transform duration-200`}>

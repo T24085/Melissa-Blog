@@ -1,7 +1,9 @@
 'use client'
 
+'use client'
+
 import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import { Calendar, Clock, Tag, ArrowLeft, Youtube } from 'lucide-react'
 import Link from 'next/link'
@@ -39,15 +41,16 @@ const getEmbedUrl = (url: string) => {
 }
 
 export default function PostDetailPage() {
-  const params = useParams<{ id: string }>()
   const router = useRouter()
-  const postId = params?.id
+  const searchParams = useSearchParams()
+  const postId = searchParams.get('id') || undefined
   const [post, setPost] = useState<Post | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!postId) {
+      router.replace('/posts')
       return
     }
 
@@ -70,13 +73,11 @@ export default function PostDetailPage() {
     }
 
     fetchPost()
-  }, [postId])
-
-  useEffect(() => {
-    if (!postId) {
-      router.replace('/posts')
-    }
   }, [postId, router])
+
+  if (!postId) {
+    return null
+  }
 
   if (loading) {
     return (
@@ -151,7 +152,7 @@ export default function PostDetailPage() {
               <span className="flex items-center space-x-2">
                 <Tag className="h-4 w-4" />
                 <Link
-                  href={`/category/${post.category}`}
+                  href={`/category?slug=${encodeURIComponent(post.category)}`}
                   className="text-primary-600 hover:text-primary-700"
                 >
                   {post.category}

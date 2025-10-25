@@ -47,6 +47,10 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+# Optional: only when deploying to a GitHub project page (e.g. /Melissa-Blog)
+NEXT_PUBLIC_BASE_PATH=/your-repo-name
+# Optional: enable admin/auth features (requires dynamic hosting)
+NEXT_PUBLIC_ENABLE_ADMIN=false
 ```
 
 All values must be present locally and in your hosting platform (for example, Vercel) or the app will refuse to initialize Firebase.
@@ -63,9 +67,10 @@ All values must be present locally and in your hosting platform (for example, Ve
 app/
   about/              - About page
   admin/              - Admin dashboard and login
-  category/[slug]/    - Category listing page
+  category/           - Category listing page (via ?slug= query)
   contact/            - Contact form
-  posts/              - Posts index and detail routes
+  post/               - Post detail page (via ?id= query)
+  posts/              - Posts index page
   videos/             - Video library
   globals.css         - Tailwind layers and global styles
   layout.tsx          - Root layout
@@ -84,12 +89,28 @@ public/               - Static assets (add as needed)
 
 ## Deployment
 1. Commit your changes and push to GitHub.
-2. Deploy on Vercel (recommended) or any platform that supports Next.js 13+.
+2. Deploy on Vercel (recommended) or any host that supports static Next.js export.
 3. Add the same environment variables from `.env.local` to your hosting provider.
 4. Configure Firebase authentication domains to include your production URL.
 
+### GitHub Pages (static hosting)
+1. Ensure all `NEXT_PUBLIC_…` variables are set in `.env.local`.  
+   For a project site (served at `https://username.github.io/repo`), also set `NEXT_PUBLIC_BASE_PATH=/repo`.
+2. Build the static bundle:
+   ```bash
+   npm run build
+   ```
+   The export will be emitted into the `out/` directory.
+3. Copy the contents of `out/` into the branch GitHub Pages serves from (for example, `gh-pages` or `docs/`).
+4. Push that branch and enable GitHub Pages in the repository settings.
+5. When previewing locally, you can serve the static output with:
+   ```bash
+   npx serve out
+   ```
+6. GitHub Pages builds are read-only by default; keep `NEXT_PUBLIC_ENABLE_ADMIN=false` to hide admin links.
+
 ## Usage Tips
-- Admin login is available at `/admin/login`; create admin users directly in Firebase Authentication.
+- Admin login is available at `/admin/login`; enable it by setting `NEXT_PUBLIC_ENABLE_ADMIN=true` and deploying to a dynamic host (Vercel, Firebase Hosting, etc.).
 - The post editor supports markdown content and estimates reading time automatically.
 - Video manager accepts full YouTube URLs and derives thumbnail previews.
 - Category pages and the post detail route fetch live content from Firestore.

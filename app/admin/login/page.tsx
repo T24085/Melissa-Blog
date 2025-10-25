@@ -6,6 +6,8 @@ import { useAuth } from '@/hooks/useAuth'
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react'
 import toast from 'react-hot-toast'
 
+const ADMIN_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ADMIN === 'true'
+
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,6 +29,23 @@ export default function AdminLogin() {
     } finally {
       setLoading(false)
     }
+  }
+
+  if (!ADMIN_ENABLED) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-6 text-center">
+          <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-primary-100">
+            <Lock className="h-6 w-6 text-primary-600" />
+          </div>
+          <h2 className="text-3xl font-extrabold text-gray-900">Admin access disabled</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            This static export is intended for read-only content on GitHub Pages. To enable secure admin features,
+            deploy the project on a dynamic hosting platform (such as Vercel) and set <code>NEXT_PUBLIC_ENABLE_ADMIN=true</code>.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
