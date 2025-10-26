@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin · Melissa's Musings</title>
+    <meta
+      name="description"
+      content="Secure admin area for Melissa's Musings. Sign in to create new posts and videos."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html" aria-current="page">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div id="admin-login" class="centered-panel">
+            <h2>Admin Login</h2>
+            <p>Sign in with your Firebase email/password credentials to manage posts and videos.</p>
+            <form id="login-form" class="form-group" style="margin-top: 1.5rem; gap: 1rem">
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input id="login-email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" placeholder="Password" required />
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%">Sign in</button>
+              <div id="login-error" class="error-message hidden"></div>
+            </form>
+          </div>
+
+          <div id="admin-panel" class="split-layout hidden">
+            <div class="form-section">
+              <div style="display: flex; justify-content: space-between; align-items: center">
+                <div>
+                  <h2 style="margin: 0">Create Post</h2>
+                  <p style="color: var(--gray-600); margin: 0.4rem 0 0">
+                    Use markdown in the content field for headings, lists, and emphasis.
+                  </p>
+                </div>
+                <button id="sign-out" class="btn-secondary">Sign Out</button>
+              </div>
+              <form id="post-form" class="form-group" style="gap: 1.25rem">
+                <div class="form-group">
+                  <label for="post-title">Title *</label>
+                  <input id="post-title" type="text" required />
+                </div>
+                <div class="form-group">
+                  <label for="post-excerpt">Excerpt *</label>
+                  <textarea id="post-excerpt" required placeholder="Short summary used on cards"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="post-content">Content *</label>
+                  <textarea id="post-content" required placeholder="Markdown supported"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="post-category">Category *</label>
+                  <select id="post-category" required>
+                    <option value="faith">Faith &amp; Spirituality</option>
+                    <option value="life">Life Lessons</option>
+                    <option value="reflection">Personal Reflection</option>
+                    <option value="books">Book Reviews</option>
+                    <option value="random">Random Thoughts</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="post-tags">Tags (comma separated)</label>
+                  <input id="post-tags" type="text" placeholder="faith, gratitude, discipleship" />
+                </div>
+                <div class="form-group">
+                  <label for="post-image">Featured Image URL</label>
+                  <input id="post-image" type="url" placeholder="https://example.com/image.jpg" />
+                </div>
+                <div class="form-group">
+                  <label for="post-video-url">YouTube URL (optional)</label>
+                  <input id="post-video-url" type="url" placeholder="https://youtube.com/watch?v=..." />
+                </div>
+                <div class="form-group">
+                  <label for="post-video-title">Video Title</label>
+                  <input id="post-video-title" type="text" placeholder="Only used when a video URL is provided" />
+                </div>
+                <div class="form-group">
+                  <label for="post-video-description">Video Description</label>
+                  <textarea id="post-video-description" placeholder="Short description of the embedded video"></textarea>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem">
+                  <input id="post-featured" type="checkbox" />
+                  <label for="post-featured">Display on homepage as featured post</label>
+                </div>
+                <button type="submit" class="btn-primary" style="width: fit-content">Publish Post</button>
+                <div id="post-success" class="badge hidden">Post created successfully!</div>
+              </form>
+            </div>
+
+            <div class="form-section">
+              <h2 style="margin: 0 0 1rem">Add Video</h2>
+              <form id="video-form" class="form-group" style="gap: 1.25rem">
+                <div class="form-group">
+                  <label for="video-title">Title *</label>
+                  <input id="video-title" type="text" required />
+                </div>
+                <div class="form-group">
+                  <label for="video-description">Description *</label>
+                  <textarea id="video-description" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="video-url">YouTube URL *</label>
+                  <input id="video-url" type="url" placeholder="https://youtube.com/watch?v=..." required />
+                </div>
+                <div class="form-group">
+                  <label for="video-category">Category *</label>
+                  <select id="video-category" required>
+                    <option value="faith">Faith &amp; Spirituality</option>
+                    <option value="life">Life Lessons</option>
+                    <option value="reflection">Personal Reflection</option>
+                    <option value="books">Book Reviews</option>
+                    <option value="random">Random Thoughts</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="video-tags">Tags (comma separated)</label>
+                  <input id="video-tags" type="text" placeholder="faith, encouragement" />
+                </div>
+                <button type="submit" class="btn-secondary" style="width: fit-content">Add Video</button>
+                <div id="video-success" class="badge hidden">Video added successfully!</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>

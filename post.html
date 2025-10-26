@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post · Melissa's Musings</title>
+    <meta
+      name="description"
+      content="Read a detailed reflection from Melissa's Musings. Articles explore faith, life, and everything in between."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div id="post-error" class="error-message hidden" role="alert"></div>
+          <article id="post-article" class="card hidden" aria-live="polite">
+            <div class="meta" id="post-meta"></div>
+            <h1 id="post-title" style="margin-bottom: 0.5rem"></h1>
+            <p id="post-excerpt" style="color: var(--gray-600)"></p>
+            <div id="post-image" class="video-thumb hidden"></div>
+            <div id="post-content" style="line-height: 1.8"></div>
+            <div id="post-video" class="card hidden">
+              <h3 style="margin-top: 0">Related Video</h3>
+              <p id="post-video-description" style="color: var(--gray-600)"></p>
+              <div id="post-video-embed" class="video-thumb" style="margin-top: 1rem"></div>
+            </div>
+            <div id="post-tags" class="tag-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/post.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Library · Melissa's Musings</title>
+    <meta
+      name="description"
+      content="Watch the latest video reflections and teachings from Melissa's Musings."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html" aria-current="page">Videos</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h1 style="margin-bottom: 1rem">Video Library</h1>
+          <p style="color: var(--gray-600); max-width: 620px; margin-bottom: 2.5rem">
+            Grab your favorite drink, press play, and settle in for encouraging conversations and teachings from
+            Melissa.
+          </p>
+          <div id="videos-list" class="videos-grid" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/videos.js"></script>
+  </body>
+</html>

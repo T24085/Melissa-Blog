@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Category · Melissa's Musings</title>
+    <meta name="description" content="Browse stories from a specific Melissa's Musings category." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div id="category-header" class="card" style="gap: 0.75rem">
+            <div class="badge" id="category-name">Category</div>
+            <h1 id="category-title"></h1>
+            <p id="category-description" style="color: var(--gray-600)"></p>
+          </div>
+          <div id="category-error" class="error-message hidden" role="alert"></div>
+          <div id="category-posts" class="cards-grid posts" style="margin-top: 2.5rem" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/category.js"></script>
+  </body>
+</html>

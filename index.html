@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Melissa's Musings · Faith, Life & Reflections</title>
+    <meta
+      name="description"
+      content="A thoughtful space where faith meets life. Discover featured stories, recent posts, and inspiring videos from Melissa."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container hero">
+          <h1>Welcome to Melissa's Musings</h1>
+          <p>
+            A thoughtful space where faith meets everyday life. Explore stories, reflections, and resources
+            designed to encourage, challenge, and inspire you on the journey.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap">
+            <a class="btn-primary" href="posts.html">Browse Posts</a>
+            <a class="btn-secondary" href="videos.html">Watch Videos</a>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <strong id="stat-posts-count">—</strong>
+              <span>Published Posts</span>
+            </div>
+            <div class="stat-card">
+              <strong id="stat-videos-count">—</strong>
+              <span>Video Reflections</span>
+            </div>
+            <div class="stat-card">
+              <strong>5</strong>
+              <span>Story Categories</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem">
+            <h2>Featured Stories</h2>
+            <a class="btn-secondary" href="posts.html">View all posts</a>
+          </div>
+          <div id="featured-posts" class="cards-grid posts" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <h2>Recent Posts</h2>
+          <div id="recent-posts" class="cards-grid posts" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <h2>Categories</h2>
+          <p style="color: var(--gray-600); max-width: 600px">
+            Explore reflections from Melissa on faith, life, books, and the moments in between.
+          </p>
+          <div id="categories" class="categories"></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem">
+            <h2>Latest Videos</h2>
+            <a class="btn-secondary" href="videos.html">View video library</a>
+          </div>
+          <div id="latest-videos" class="videos-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="container split-layout">
+          <div class="card">
+            <h3>About Melissa</h3>
+            <p>
+              I'm Melissa—writer, tea drinker, and lover of meaningful conversation. This little corner of the
+              internet is where I process faith, celebrate growth, and wrestle with the questions that don’t always
+              have tidy answers.
+            </p>
+            <p>
+              You’ll find stories from everyday life, reflections on Scripture, thoughts on books I’m reading, and
+              video conversations with friends. Make yourself at home—you’re welcome here.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Stay in the Loop</h3>
+            <p style="color: var(--gray-600)">
+              Pop in your email below and receive a note whenever a new post goes live.
+            </p>
+            <form class="form-group" onsubmit="event.preventDefault(); alert('Coming soon!');">
+              <label for="subscribe-email">Email address</label>
+              <input id="subscribe-email" type="email" placeholder="you@example.com" required />
+              <button type="submit" class="btn-primary" style="width: fit-content">Notify me</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+          <a href="https://firebase.google.com/" target="_blank" rel="noreferrer">Powered by Firebase</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings. Crafted with plenty of prayer, patience, and coffee.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

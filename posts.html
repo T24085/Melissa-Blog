@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Posts · Melissa's Musings</title>
+    <meta
+      name="description"
+      content="Browse every post from Melissa's Musings. Filter by category or search for specific stories."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a class="brand" href="index.html">
+          <span class="brand-icon">MM</span>
+          Melissa's Musings
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="posts.html" aria-current="page">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <h1 style="margin-bottom: 1rem">All Posts</h1>
+          <p style="color: var(--gray-600); max-width: 640px; margin-bottom: 2rem">
+            Dive into every reflection, story, and encouragement from Melissa. Use the filters below to find something
+            that speaks to you today.
+          </p>
+
+          <div class="card" style="gap: 1.25rem">
+            <div class="form-group">
+              <label for="search-input">Search</label>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Search by title, excerpt, or tags…"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-group">
+              <label for="category-filter">Category</label>
+              <select id="category-filter">
+                <option value="all">All categories</option>
+                <option value="faith">Faith &amp; Spirituality</option>
+                <option value="life">Life Lessons</option>
+                <option value="reflection">Personal Reflection</option>
+                <option value="books">Book Reviews</option>
+                <option value="random">Random Thoughts</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="posts-list" class="cards-grid posts" style="margin-top: 2.5rem" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="posts.html">Posts</a>
+          <a href="videos.html">Videos</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <p class="footer-note">
+          © <span id="footer-year"></span> Melissa's Musings.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear()
+    </script>
+    <script type="module" src="js/posts.js"></script>
+  </body>
+</html>
